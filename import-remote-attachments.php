@@ -1,9 +1,10 @@
 <?php
+defined( 'ABSPATH' ) OR exit;
 /**
  * Plugin Name:  Import Remote Attachments
  * Plugin URI:   https://github.com/jbwtech/import-remote-attachments
  * Description:  A Wordpress plugin to override default behavior of not allowing importing attachments from remote URL's.
- * Version:      0.0.1
+ * Version:      0.0.2
  * Author:       Brent Williams
  * Author URI:   https://github.com/jbwtech/
  */
