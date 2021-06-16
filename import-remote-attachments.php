@@ -13,15 +13,15 @@ defined( 'ABSPATH' ) OR exit;
  * add_filter( 'http_request_host_is_external', '__return_true' );
  */
 
-function activate_import-remote-attachments() {
+function activate_import_remote_attachments() {
    /* create table of allowed hosts */
 }
-register_activation_hook( __FILE__, 'activate_import-remote-attachments' );
+register_activation_hook( __FILE__, 'activate_import_remote_attachments' );
 
-function deactivate_import-remote-attachments() {
+function deactivate_import_remote_attachments() {
    /* delete table of allowed hosts */
 }
-register_deactivation_hook( __FILE__, 'deactivate_import-remote-attachments' );
+register_deactivation_hook( __FILE__, 'deactivate_import_remote_attachments' );
 
 add_filter( 'http_request_host_is_external', 'allow_my_custom_host', 10, 3 );
 
