@@ -3,11 +3,12 @@ defined( 'ABSPATH' ) OR exit;
 /**
  * Plugin Name:        Import Remote Attachments
  * Plugin URI:         https://github.com/jbwtech/import-remote-attachments
- * Description:        A Wordpress plugin to override default behavior of not allowing importing attachments from remote URL's.
- * Version:            0.0.2
+ * Description:        Overrides the default behavior for importing attachments from remote URL's.
+ * Version:            0.0.3
  * Requires at least:  3.5
  * Author:             Brent Williams
  * Author URI:         https://github.com/jbwtech/
+ * Network:            True
  */
 
 /*
@@ -27,9 +28,9 @@ function deactivate_import_remote_attachments() {
 register_deactivation_hook( __FILE__, 'deactivate_import_remote_attachments' );
 register_uninstall_hook( __FILE__, 'deactivation_import_remote_attachments' );
 
-add_filter( 'http_request_host_is_external', 'allow_my_custom_host', 10, 3 );
+add_filter( 'http_request_host_is_external', 'allow_custom_host', 10, 3 );
 
-function allow_my_custom_host( $allow, $host, $url ) {
+function allow_custom_host( $allow, $host, $url ) {
   $exp = '/clas\.ufl\.edu/i';
 
   if ( preg_match( $exp, $host ) ) 
@@ -46,6 +47,7 @@ function ira_install() {
 
    $sql = "CREATE TABLE " . $table_name . " (
       id mediumint(9) NOT NULL AUTO_INCREMENT,
+      blog_id int NOT NULL, n
       slug varchar(75) NOT NULL,
       hostname varchar(75) NOT NULL,
       PRIMARY KEY (id)
@@ -67,4 +69,7 @@ function ira_cleanup() {
    $wpdb->query( $sql );
 }
 
+function update_db() {
+   get_id_from_blogname( $slug );
+}
 ?>
