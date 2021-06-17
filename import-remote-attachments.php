@@ -1,14 +1,15 @@
 <?php
+namespace EclipseComp\IRA;
 defined( 'ABSPATH' ) OR exit;
+
 /**
  * Plugin Name:        Import Remote Attachments
  * Plugin URI:         https://github.com/jbwtech/import-remote-attachments
  * Description:        Overrides the default behavior for importing attachments from remote URL's.
- * Version:            0.0.3
+ * Version:            0.0.5
  * Requires at least:  3.5
  * Author:             Brent Williams
  * Author URI:         https://github.com/jbwtech/
- * Network:            True
  */
 
 /*
@@ -26,7 +27,6 @@ function deactivate_import_remote_attachments() {
    ira_cleanup();
 }
 register_deactivation_hook( __FILE__, 'deactivate_import_remote_attachments' );
-register_uninstall_hook( __FILE__, 'deactivation_import_remote_attachments' );
 
 add_filter( 'http_request_host_is_external', 'allow_custom_host', 10, 3 );
 
@@ -67,9 +67,5 @@ function ira_cleanup() {
 
    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
    $wpdb->query( $sql );
-}
-
-function update_db() {
-   get_id_from_blogname( $slug );
 }
 ?>
