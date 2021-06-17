@@ -16,19 +16,17 @@ defined( 'ABSPATH' ) OR exit;
  * add_filter( 'http_request_host_is_external', '__return_true' );
  */
 
-function activate_import_remote_attachments() {
-   /* create table of allowed hosts */
-   ira_install();
+function activate() {
+   install();
 }
-register_activation_hook( __FILE__, 'activate_import_remote_attachments' );
+register_activation_hook( __FILE__, 'EclipseComp\IRA\activate' );
 
-function deactivate_import_remote_attachments() {
-   /* delete table of allowed hosts */
-   ira_cleanup();
+function uninstall() {
+   cleanup();
 }
-register_deactivation_hook( __FILE__, 'deactivate_import_remote_attachments' );
+register_uninstall_hook( __FILE__, 'EclipseComp\IRA\uninstall' );
 
-add_filter( 'http_request_host_is_external', 'allow_custom_host', 10, 3 );
+add_filter( 'http_request_host_is_external', 'EclipseComp\IRA\allow_custom_host', 10, 3 );
 
 function allow_custom_host( $allow, $host, $url ) {
   $exp = '/clas\.ufl\.edu/i';
@@ -38,7 +36,7 @@ function allow_custom_host( $allow, $host, $url ) {
   return $allow;
 }
 
-function ira_install() {
+function install() {
      
    global $wpdb;
 
@@ -47,7 +45,7 @@ function ira_install() {
 
    $sql = "CREATE TABLE " . $table_name . " (
       id mediumint(9) NOT NULL AUTO_INCREMENT,
-      blog_id int NOT NULL, n
+      blog_id int NOT NULL,
       slug varchar(75) NOT NULL,
       hostname varchar(75) NOT NULL,
       PRIMARY KEY (id)
@@ -57,7 +55,7 @@ function ira_install() {
    dbDelta( $sql );
 }
 
-function ira_cleanup() {
+function cleanup() {
 
    global $wpdb;
 
