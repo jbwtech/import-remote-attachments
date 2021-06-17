@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) OR exit;
  * Requires at least:  3.5
  * Author:             Brent Williams
  * Author URI:         https://github.com/jbwtech/
+ * Network:            True
  */
 
 /*
