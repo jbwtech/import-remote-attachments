@@ -25,6 +25,7 @@ function deactivate_import_remote_attachments() {
    ira_cleanup();
 }
 register_deactivation_hook( __FILE__, 'deactivate_import_remote_attachments' );
+register_uninstall_hook( __FILE__, 'deactivation_import_remote_attachments' );
 
 add_filter( 'http_request_host_is_external', 'allow_my_custom_host', 10, 3 );
 
@@ -41,14 +42,14 @@ function ira_install() {
    global $wpdb;
 
    $charset_collate = $wpdb->get_charset_collate();
-   $table_name = $prefix . "import_allowed_hosts";
+   $table_name = $wpdb->prefix . "import_allowed_hosts";
 
-   $sql = "CREATE TABLE $table_name (
+   $sql = "CREATE TABLE " . $table_name . " (
       id mediumint(9) NOT NULL AUTO_INCREMENT,
       slug varchar(75) NOT NULL,
       hostname varchar(75) NOT NULL,
       PRIMARY KEY (id)
-   ) $charset_collate;";
+   ) " . $charset_collate . ";";
 
    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
    dbDelta( $sql );
@@ -58,12 +59,12 @@ function ira_cleanup() {
 
    global $wpdb;
 
-   $table_name = $prefix . "import_allowed_hosts";
+   $table_name = $wpdb->prefix . "import_allowed_hosts";
 
-   $sql = "DROP TABLE $table_name;";
+   $sql = "DROP TABLE " . $table_name . ";";
 
    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-   dbDelta( $sql );
+   $wpdb->query( $sql );
 }
 
 ?>
