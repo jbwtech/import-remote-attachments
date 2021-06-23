@@ -11,10 +11,15 @@ function options() {
    if ( !current_user_can( 'manage_options' ) ) {
       wp_die( __( 'You do not have sufficient permissions to access this page.') );
    }
-   echo '<div class="wrap">';
-   echo '<h1>Import Remote Attachments</h1>';
-   echo '<p>Here is where the form would go if I actually had options.</p>';
-   echo '</div>';
+?>
+<div class="wrap">
+<h1>Import Remote Attachments</h1>
+<p>Here is where the form would go if I actually had options.</p>
+<form method="post" action="options.php">
+<?php submit_button(); ?>
+</form>
+</div>
+<?php
 }
 
 ?>
