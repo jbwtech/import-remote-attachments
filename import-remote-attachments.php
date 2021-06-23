@@ -32,13 +32,13 @@ add_filter( 'http_request_host_is_external', 'EclipseComp\IRA\allow_custom_host'
 function allow_custom_host( $allow, $host, $url ) {
   $exp = '/clas\.ufl\.edu/i';
 
-  if ( preg_match( $exp, $host ) ) 
+  if ( preg_match( $exp, $host ) )
     $allow = true;
   return $allow;
 }
 
 function install() {
-     
+
    global $wpdb;
 
    $charset_collate = $wpdb->get_charset_collate();
@@ -46,8 +46,6 @@ function install() {
 
    $sql = "CREATE TABLE " . $table_name . " (
       id mediumint(9) NOT NULL AUTO_INCREMENT,
-      blog_id int NOT NULL,
-      slug varchar(75) NOT NULL,
       hostname varchar(75) NOT NULL,
       PRIMARY KEY (id)
    ) " . $charset_collate . ";";
