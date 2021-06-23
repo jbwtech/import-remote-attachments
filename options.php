@@ -1,14 +1,14 @@
 <?php
 namespace EclipseComp\IRA;
 
-add_action( 'admin_menu', 'EclipseComp\IRA\menu' );
+add_action( 'admin_menu', 'EclipseComp\IRA\ira_menu' );
 
-function menu() {
+function ira_menu() {
    add_options_page( __('Import Remote Attachments Options', 'textdomain'), __('Import Remote Attachments', 'textdomain'), 'manage_options',
-      'import-remote-attachments.php', 'EclipseComp\IRA\options');
+      'import-remote-attachments.php', 'EclipseComp\IRA\ira_options');
 }
 
-function options() {
+function ira_options() {
    if ( !current_user_can( 'manage_options' ) ) {
       wp_die( __( 'You do not have sufficient permissions to access this page.') );
    }
