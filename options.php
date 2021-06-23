@@ -15,7 +15,7 @@ function options() {
 <div class="wrap">
 <h1>Import Remote Attachments</h1>
 <p>Here is where the form would go if I actually had options.</p>
-<form method="post" action="options.php">
+<form method="post" action="<?php __FILE__ ?>">
 <?php submit_button(); ?>
 </form>
 </div>
