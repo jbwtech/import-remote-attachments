@@ -4,8 +4,8 @@ namespace EclipseComp\IRA;
 add_action( 'admin_menu', 'EclipseComp\IRA\menu' );
 
 function menu() {
-   add_options_page( 'Import Remote Attachments Options', 'Import Remote Attachments', 'manage_options',
-      'import-remote-attachments-options', 'EclipseComp\IRA\options');
+   add_options_page( __('Import Remote Attachments Options', 'textdomain'), __('Import Remote Attachments', 'textdomain'), 'manage_options',
+      'import-remote-attachments.php', 'EclipseComp\IRA\options');
 }
 
 function options() {
