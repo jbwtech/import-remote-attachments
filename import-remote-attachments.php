@@ -2,7 +2,7 @@
 namespace EclipseComp\IRA;
 defined( 'ABSPATH' ) OR exit;
 
-include 'options.php';
+require_once('options.php');
 
 /**
  * Plugin Name:        Import Remote Attachments
