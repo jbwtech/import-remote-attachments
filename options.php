@@ -1,7 +1,7 @@
 <?php
 namespace EclipseComp\IRA;
 
-add_action( 'admin_menu', 'EclipseComp\IRA\ira_menu' );
+add_action( 'network_admin_menu', 'EclipseComp\IRA\ira_menu' );
 
 function ira_menu() {
    add_options_page( __('Import Remote Attachments Options', 'textdomain'), __('Import Remote Attachments', 'textdomain'), 'manage_options',
